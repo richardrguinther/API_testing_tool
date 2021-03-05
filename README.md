@@ -1,4 +1,4 @@
-![screenshot.png]
+![Screenshot](screenshot.png)
 # Sobre o que se trata essa aplicação?
 Estou estudando sobre o desenvolvimento de APIs em WordPress para utilizar junto de minhas APPs em React. Surgiu aí a necessidade de testar esses dados num formato mais dinâmico.
 A aplicação ainda não está completa, pois eu continuarei a desenvolve-lá conforme a necessidade for evoluindo. 
