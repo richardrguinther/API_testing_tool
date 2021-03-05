@@ -1,7 +1,9 @@
 const form = document.querySelector("form");
-const inputs = document.querySelectorAll("input");
 const buttons = document.querySelectorAll("button");
 const responseDiv = document.querySelector("#response");
+
+const url = document.querySelector('[data-js="data-url"]');
+const inputData = document.querySelector('[data-js="data-input"]');
 
 let data = {};
 
@@ -9,7 +11,6 @@ const fetchData = (data, options) => {
   let requestOptions;
   // Headers
   const myHeaders = new Headers();
-
   myHeaders.append("Content-Type", "application/json");
 
   if (!options)
@@ -19,18 +20,19 @@ const fetchData = (data, options) => {
     };
   else requestOptions = options;
 
-  if (data.method === "post")
-    requestOptions.body = JSON.stringify(data.inputData);
+  if (data.method === "POST") {
+    requestOptions.body = JSON.stringify(JSON.parse(inputData.value));
+  }
 
-  return (fetchedData = fetch(data.url, requestOptions));
+  return (fetchedData = window.fetch(data.url, requestOptions));
 };
 
 const handleClick = ({ target }) => {
   const method = target.innerText;
-  const url = document.querySelector('[data-js="data-url"]').value;
-  const inputData = document.querySelector('[data-js="data-input"]').value;
+  const urlVal = url.value;
+  const inputVal = inputData.value;
 
-  data = { method, url, inputData };
+  data = { method, url: urlVal, inputData: inputVal };
 };
 
 const handleSubmit = async (event) => {
@@ -43,6 +45,7 @@ const handleSubmit = async (event) => {
 
   const textedJson = JSON.stringify(jsonResponse, undefined, 5);
   responseDiv.value = textedJson;
+  console.log(data);
 };
 
 buttons.forEach((button) => {

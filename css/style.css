@@ -1,4 +1,4 @@
-textarea {
+#response {
     color      : #000;
     margin     : 2rem auto;
     padding    : 0.7rem;
@@ -9,10 +9,10 @@ textarea {
     background : #a4a4a4;
 }
 
-textarea::-webkit-scrollbar-thumb {
+#response::-webkit-scrollbar-thumb {
     background: #fff;
 }
 
-textarea::-webkit-scrollbar-track {
+#response::-webkit-scrollbar-track {
     background: #f44;
 }
