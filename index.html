@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Use API</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <form>
@@ -19,63 +20,9 @@
       <button>UPDATE</button>
       <button>DELETE</button>
 
-      <div id="response"></div>
+      <textarea disabled id="response"></textarea>
     </form>
 
-    <script>
-      const form = document.querySelector("form");
-      const inputs = document.querySelectorAll("input");
-      const buttons = document.querySelectorAll("button");
-
-      let data = {};
-
-      const fetchData = (data, options) => {
-        let requestOptions;
-        // Headers
-        const myHeaders = new Headers();
-
-        myHeaders.append("Content-Type", "application/json");
-
-        if (!options)
-          requestOptions = {
-            method: data.method,
-            headers: myHeaders,
-          };
-        else requestOptions = options;
-
-        if (data.method === "post")
-          requestOptions.body = JSON.stringify(data.inputData);
-
-        return (fetchedData = fetch(data.url, requestOptions));
-      };
-
-      const handleClick = ({ target }) => {
-        const method = target.innerText;
-        const url = document.querySelector('[data-js="data-url"]').value;
-        const inputData = document.querySelector('[data-js="data-input"]')
-          .value;
-
-        data = { method, url, inputData };
-      };
-
-      const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const responseDiv = document.querySelector("#response");
-        responseDiv.innerHTML = "";
-
-        const response = await fetchData(data);
-        const jsonResponse = await response.json();
-
-        Object.entries(jsonResponse).forEach(([key, value]) => {
-          responseDiv.innerHTML += `<p>${key}: ${value}</p>`;
-        });
-      };
-
-      buttons.forEach((button) => {
-        button.addEventListener("click", handleClick);
-      });
-      form.addEventListener("submit", handleSubmit);
-    </script>
+    <script src="js/main.js"></script>
   </body>
 </html>
